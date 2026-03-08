@@ -9,7 +9,8 @@ async function getCharacter() {
     }
 
     const data = await res.json();
-    console.log(data);
+    return(data)
+    // console.log(data);
   } catch (error) {
     console.log("Error:", error.message);
   }
@@ -18,7 +19,7 @@ async function getCharacter() {
 getCharacter();
 
 //Post Function
-async function createPost() {
+async function makePost() {
   try {
     const url = "https://jsonplaceholder.typicode.com/posts";
 
@@ -28,9 +29,9 @@ async function createPost() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        title: "My First Post",
-        body: "Learning POST requests",
-        userId: 1,
+        title: "A little bad taste",
+        body: "is like a nice dash of paprika",
+        userId: 2,
       }),
     };
 
@@ -41,13 +42,29 @@ async function createPost() {
     }
 
     const data = await res.json();
+    // console.log(data)
     return data;
   } catch (error) {
     console.log(error);
   }
 }
 
-createPost();
+makePost();
+
+//main function
+async function main() {
+  try {
+    const mydata = await getCharacter();
+    console.log(mydata);
+
+    const post = await makePost();
+    console.log(post);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+main();
 
 
 
