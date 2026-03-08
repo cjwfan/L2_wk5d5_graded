@@ -16,3 +16,38 @@ async function getCharacter() {
 }
 
 getCharacter();
+
+//Post Function
+async function createPost() {
+  try {
+    const url = "https://jsonplaceholder.typicode.com/posts";
+
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        title: "My First Post",
+        body: "Learning POST requests",
+        userId: 1,
+      }),
+    };
+
+    const res = await fetch(url, options);
+
+    if (!res.ok) {
+      return;
+    }
+
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+createPost();
+
+
+
