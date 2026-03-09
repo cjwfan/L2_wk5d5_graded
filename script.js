@@ -1,5 +1,7 @@
 "use strict";
 
+
+//*GET function
 async function getCharacter() {
   try {
     const res = await fetch("https://swapi.dev/api/people/1/");
@@ -19,7 +21,7 @@ async function getCharacter() {
 // getCharacter();
 
 
-//Post Function
+//*POST Function
 async function makePost() {
   try {
     const url = "https://jsonplaceholder.typicode.com/posts";
@@ -51,7 +53,7 @@ async function makePost() {
 }
 // makePost();
 
-
+//*Render function for GET
 function renderCharacter(character) {
   const container = document.getElementById("output");
 
@@ -68,18 +70,32 @@ function renderCharacter(character) {
   container.appendChild(mass);
 }
 
+//* Render Function for POST
+function renderPost(post) {
+  const container = document.getElementById("output2");
+
+  const idP = document.createElement("p");
+  idP.textContent = "Post ID: " + post.id;
+  container.appendChild(idP);
+
+  const titleP = document.createElement("p");
+  titleP.textContent = "Title: " + post.title;
+  container.appendChild(titleP);
+}
 
 
-//main function
+//*main function
 async function main() {
   try {
     const mydata = await getCharacter();
     console.log(mydata);
-    
+
      renderCharacter(mydata);
 
     const post = await makePost();
     console.log(post);
+
+    renderPost(post);
   } catch (error) {
     console.log(error);
   }
