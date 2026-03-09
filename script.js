@@ -41,7 +41,7 @@ async function makePost() {
     const res = await fetch(url, options);
 
     if (!res.ok) {
-      return;
+      throw new Error("POST failed");
     }
 
     const data = await res.json();
