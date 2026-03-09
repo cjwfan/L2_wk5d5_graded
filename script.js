@@ -9,14 +9,15 @@ async function getCharacter() {
     }
 
     const data = await res.json();
-    return(data)
+    return data
     // console.log(data);
   } catch (error) {
     console.log("Error:", error.message);
   }
 }
 
-getCharacter();
+// getCharacter();
+
 
 //Post Function
 async function makePost() {
@@ -48,14 +49,34 @@ async function makePost() {
     console.log(error);
   }
 }
+// makePost();
 
-makePost();
+
+function renderCharacter(character) {
+  const container = document.getElementById("output");
+
+  const name = document.createElement("p");
+  name.textContent = "Character: " + character.name;
+  container.appendChild(name);
+
+  const height = document.createElement("p");
+  height.textContent = "Height: " + character.height;
+  container.appendChild(height);
+
+  const mass = document.createElement("p");
+  mass.textContent = "Mass: " + character.mass;
+  container.appendChild(mass);
+}
+
+
 
 //main function
 async function main() {
   try {
     const mydata = await getCharacter();
     console.log(mydata);
+    
+     renderCharacter(mydata);
 
     const post = await makePost();
     console.log(post);
